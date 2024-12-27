@@ -42,11 +42,17 @@ jobs:
           git config --global user.email "actions@github.com"
           
           # Fetch the latest changes from the docs branch and checkout docs
-          git fetch origin docs
+          git fetch origin refs/heads/docs:docs
           git checkout docs || git checkout -b docs
+          
+          # Stash uncommitted changes (if any)
+          git stash
           
           # Pull the latest changes from the docs branch to avoid conflicts
           git pull origin docs --rebase || echo "No changes to rebase"
+          
+          # Apply stashed changes (if any)
+          git stash pop || echo "No stashed changes"
           
           # Stage and commit changes to docs/leaderboard.md only
           git add docs/leaderboard.md
