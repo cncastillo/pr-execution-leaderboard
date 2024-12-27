@@ -1,4 +1,4 @@
 ## Benchmark Leaderboard
 
-| Pull Request | Benchmark Time (s) |
-|--------------|--------------------|
+| Pull Request Author | Benchmark Time (s) |
+|---------------------|--------------------|
