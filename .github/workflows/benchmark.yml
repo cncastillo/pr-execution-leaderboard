@@ -24,41 +24,47 @@ jobs:
         run: |
           # Get the PR author username
           PR_AUTHOR=$(jq -r '.pull_request.user.login' "$GITHUB_EVENT_PATH")
-          
+          echo "PR Author: $PR_AUTHOR"
+
           # Get the benchmark result from the JSON file
           EXECUTION_TIME=$(jq -r '.benchmark_results[0].time' results.json)
-          
+          echo "Benchmark result: $EXECUTION_TIME"
+
           # Ensure the docs folder exists
           mkdir -p docs
-          
+
           # Append the benchmark result to docs/leaderboard.md
           echo "| $PR_AUTHOR | $EXECUTION_TIME |" >> docs/leaderboard.md
-          
+
+          # Check the contents of docs/leaderboard.md to verify changes
+          cat docs/leaderboard.md
+
           # Discard changes in unwanted files (e.g., results.json)
           git checkout -- results.json scripts/benchmark.jl
-          
+
           # Configure Git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          
+
           # Stash uncommitted changes (if any)
           git stash || echo "No changes to stash"
-          
+
           # Fetch the latest changes from the docs branch and checkout docs
           git fetch origin refs/heads/docs:docs
           git checkout docs || git checkout -b docs
-          
+
           # Pull the latest changes from the docs branch to avoid conflicts
           git pull origin docs --rebase || echo "No changes to rebase"
-          
+
           # Apply stashed changes (if any)
           git stash pop || echo "No stashed changes"
-          
+
           # Stage and commit changes to docs/leaderboard.md only
           git add docs/leaderboard.md
           git commit -m "Update docs/leaderboard.md with $PR_AUTHOR benchmark" || echo "No changes to commit"
-          
+
           # Push the updated docs/leaderboard.md
           git push origin docs || echo "No changes to push"
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
