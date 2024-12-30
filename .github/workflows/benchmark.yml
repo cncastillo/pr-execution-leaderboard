@@ -1,61 +1,55 @@
-name: Benchmarks
-
-permissions:
-  contents: write # Required to update benchmark results
-  pull-requests: write # Required to comment on pull requests
+name: Run Benchmarks
 
 on:
   pull_request:
-    branches:
-      - main
     paths:
-      - "src/**/*"
-      - "benchmarks/**/*"
-      - "Project.toml"
-      - ".github/workflows/benchmark.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "src/**/*"
-      - "benchmarks/**/*"
-      - "Project.toml"
-      - ".github/workflows/benchmark.yml"
+      - 'src/**'
+      - 'benchmarks/**'
 
 jobs:
   benchmark:
-    if: ${{ !contains(github.event.head_commit.message, '[skip benchmarks]') }}
     runs-on: ubuntu-latest
+
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       # Step 2: Set up Julia
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: '1.11' # Replace with your required Julia version
+          version: '1.11'
 
       # Step 3: Install dependencies
-      - name: Install Julia dependencies
+      - name: Install dependencies
         run: |
           julia -e 'using Pkg; Pkg.instantiate()'
 
-      # Step 4: Run benchmarks
+      # Step 4: Run the benchmark script
       - name: Run benchmarks
-        run: julia src/main.jl
+        run: |
+          julia benchmarks/benchmark.jl
+        env:
+          JULIA_PROJECT: .
 
-      # Step 5: Upload benchmark results
+      # Step 5: Upload benchmark results using github-action-benchmark
       - name: Upload Benchmark Results
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: PR Execution Leaderboard Benchmarks
+          name: Julia benchmark result
           tool: 'julia'
           output-file-path: benchmarks/benchmark_results.json
-          benchmark-data-dir-path: benchmarks
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          comment-always: true
-          summary-always: true
-          alert-threshold: "150%"
-          fail-on-alert: false
+          auto-push: true
+          # Show alert with commit comment on detecting possible performance regression
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+
+      # Step 6: Upload the benchmark results as a check on GitHub
+      - name: Upload benchmark results to GitHub
+        uses: actions/upload-artifact@v2
+        with:
+          name: benchmark-results
+          path: benchmarks/benchmark_results.json
