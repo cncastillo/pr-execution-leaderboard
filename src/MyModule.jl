@@ -3,7 +3,7 @@ module MyModule
 export expensive_computation, fast_function
 # A simple function to demonstrate benchmarking
 function expensive_computation()
-    n = 30
+    n = 40
     if n == 1
         return 0
     elseif n == 2
