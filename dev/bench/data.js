@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735587799561,
+  "lastUpdate": 1735589823279,
   "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -49,6 +49,32 @@ window.BENCHMARK_DATA = {
         "benches": [
           {
             "name": "function1/Stockless",
+            "value": 2.795,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1000,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "committer": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "id": "335982ce8f6b855fc934c6721e2edbd12d7c5815",
+          "message": "Try without fork",
+          "timestamp": "2024-12-30T20:09:30Z",
+          "url": "https://github.com/Stockless/pr-execution-leaderboard/pull/6/commits/335982ce8f6b855fc934c6721e2edbd12d7c5815"
+        },
+        "date": 1735589822477,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/cncastillo",
             "value": 2.795,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1000,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
