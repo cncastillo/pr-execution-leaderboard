@@ -97,7 +97,14 @@
         <a id="repository-link" rel="noopener"></a>
       </div>
     </header>
-    <main id="main"></main>
+    <main id="main">
+      <div id="leaderboard" class="benchmark-set" style="text-align: center; margin: 20px auto; max-width: 600px; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h1 class="benchmark-title" style="font-size: 24px; color: #4CAF50; margin-bottom: 15px;">🏆 Leaderboard 🏆</h1>
+        <ul id="leaderboard-list" style="list-style-type: none; padding: 0; font-size: 18px; color: #333; line-height: 1.8;">
+          <!-- Dynamic leaderboard items will be added here -->
+        </ul>
+      </div>    
+    </main>
     <footer>
       <button id="dl-button">Download data as JSON</button>
       <div class="spacer"></div>
@@ -130,7 +137,7 @@
           function collectBenchesPerTestCase(entries) {
             const map = new Map();
             for (const entry of entries) {
-              const {commit, date, tool, benches} = entry;
+              const { commit, date, tool, benches } = entry;
               for (const bench of benches) {
                 const result = { commit, date, tool, bench };
                 const arr = map.get(bench.name);
@@ -142,6 +149,40 @@
               }
             }
             return map;
+          }
+          function calculateLeaderboard(entries) {
+            const fastestMap = new Map();
+
+            for (const entry of entries) {
+              for (const bench of entry.benches) {
+                if (!bench.range || bench.range.length === 0) {
+                  const userKey = bench.name; // Use the name (e.g., "function1/Stockless") as the unique identifier.
+                  if (!fastestMap.has(userKey) || bench.value < fastestMap.get(userKey).value) {
+                    fastestMap.set(userKey, {
+                      name: bench.name,
+                      value: bench.value,
+                      tool: entry.tool,
+                      commit: entry.commit.id.slice(0, 7),
+                    });
+                  }
+                }
+              }
+            }
+
+            // Convert the Map values to an array and sort by the best time.
+            return Array.from(fastestMap.values())
+              .sort((a, b) => a.value - b.value)
+              .slice(0, 10); // Top 10 fastest results
+          }
+
+          function renderLeaderboard(leaderboard) {
+            const leaderboardContainer = document.getElementById("leaderboard-list");
+            leaderboardContainer.innerHTML = ""; // Clear any existing content
+            leaderboard.forEach((entry, index) => {
+              const listItem = document.createElement("li");
+              listItem.textContent = `${index + 1}. ${entry.name} - ${entry.value} ${entry.tool} (Commit: ${entry.commit})`;
+              leaderboardContainer.appendChild(listItem);
+            });
           }
 
           const data = window.BENCHMARK_DATA;
@@ -160,6 +201,8 @@
             a.download = 'benchmark_data.json';
             a.click();
           };
+          const leaderboard = calculateLeaderboard(Object.values(data.entries).flat());
+          renderLeaderboard(leaderboard);
 
           // Prepare data points for charts
           return Object.keys(data.entries).map(name => ({
