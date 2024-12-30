@@ -4,11 +4,9 @@ using LinearAlgebra
 
 # Example benchmark function
 function benchmark_task()
-    # Example code to benchmark
-    A = rand(1000, 1000)
-    B = rand(1000, 1000)
-    C = similar(A)
-    @benchmark mul!($C, $A, $B)
+    # Another example benchmark
+    x = rand(10^6)
+    @btime sort(x)
 end
 
 # Run benchmarks and save results
