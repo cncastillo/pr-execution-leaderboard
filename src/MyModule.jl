@@ -2,7 +2,8 @@ module MyModule
 
 export expensive_computation, fast_function
 # A simple function to demonstrate benchmarking
-function expensive_computation(n::Int)
+function expensive_computation()
+    n = 30
     if n == 1
         return 0
     elseif n == 2
@@ -17,7 +18,8 @@ function expensive_computation(n::Int)
 end
 
 # Another function to demonstrate benchmarking
-function fast_function(x::Int)
+function fast_function()
+    x = 2
     return x * 2  # A simple, fast function for comparison
 end
 
