@@ -1,4 +1,5 @@
 using BenchmarkTools
+push!(LOAD_PATH, "src")
 using MyModule  # Import your module
 
 # Benchmark the expensive_computation function

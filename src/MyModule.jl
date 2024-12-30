@@ -1,13 +1,19 @@
 module MyModule
 
+export expensive_computation, fast_function
 # A simple function to demonstrate benchmarking
 function expensive_computation(n::Int)
-    # Simulate an expensive computation (e.g., Fibonacci series)
-    fib = [0, 1]
-    for i in 3:n
-        push!(fib, fib[end-1] + fib[end-2])
+    if n == 1
+        return 0
+    elseif n == 2
+        return 1
     end
-    return fib[n]
+
+    a, b = 0, 1
+    for i in 3:n
+        a, b = b, a + b
+    end
+    return b
 end
 
 # Another function to demonstrate benchmarking
