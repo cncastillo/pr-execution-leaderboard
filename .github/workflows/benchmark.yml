@@ -35,7 +35,7 @@ jobs:
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: '1.9' # Replace with your required Julia version
+          version: '1.11' # Replace with your required Julia version
 
       # Step 3: Install dependencies
       - name: Install Julia dependencies
