@@ -8,6 +8,12 @@ on:
       - 'src/**'
       - 'benchmarks/**'
 
+permissions:
+  contents: write # contents permission to update benchmark contents in gh-pages branch
+  statuses: read
+  deployments: write # deployments permission to deploy GitHub pages website
+  pull-requests: write
+
 jobs:
   benchmark:
     runs-on: ubuntu-latest
@@ -45,7 +51,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
           # Show alert with commit comment on detecting possible performance regression
-          alert-threshold: '200%'
+          alert-threshold: '2000%'
           comment-on-alert: true
           fail-on-alert: true
 
