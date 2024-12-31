@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735681731428,
+  "lastUpdate": 1735683142050,
   "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -158,6 +158,34 @@ window.BENCHMARK_DATA = {
             "value": 2.795,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1000,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Stockless",
+            "username": "Stockless",
+            "email": "mar.stockle@gmail.com"
+          },
+          "committer": {
+            "name": "Stockless",
+            "username": "Stockless",
+            "email": "mar.stockle@gmail.com"
+          },
+          "id": "770bef2e377cbf49763ee358045a133a29315157",
+          "message": "adding BenchmarkTools",
+          "timestamp": "2024-12-31T22:10:05Z",
+          "url": "https://github.com/Stockless/pr-execution-leaderboard/commit/770bef2e377cbf49763ee358045a133a29315157"
+        },
+        "date": 1735683141629,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/Stockless",
+            "value": 9267,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
