@@ -6,7 +6,7 @@ using MyModule
 github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
 suite = BenchmarkGroup()
 suite["function"] = BenchmarkGroup(["USERNAME"])  
-suite["function1"][github_username] = @benchmarkable expensive_computation(30000)
+suite["function1"][github_username] = @benchmarkable expensive_computation()
 tune!(suite)
 results = run(suite, verbose=true)
 
