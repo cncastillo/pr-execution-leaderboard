@@ -179,8 +179,15 @@
             const leaderboardContainer = document.getElementById("leaderboard-list");
             leaderboardContainer.innerHTML = ""; // Clear any existing content
             leaderboard.forEach((entry, index) => {
+              // Remove "function1/" prefix if present
+              const formattedName = entry.name.replace(/^function1\//, '');
+              
+              // Convert time value from ns to ms
+              const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
+              
+              // Create leaderboard item with "ms" as the unit
               const listItem = document.createElement("li");
-              listItem.textContent = `${index + 1}. ${entry.name} - ${entry.value} ${entry.tool} (Commit: ${entry.commit})`;
+              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (Commit: ${entry.commit})`;
               leaderboardContainer.appendChild(listItem);
             });
           }
@@ -219,12 +226,16 @@
             parent.appendChild(canvas);
 
             const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
+            
+            // Remove "function1/" prefix from the name
+            const formattedName = name.replace(/^function1\//, '');
+            
             const data = {
               labels: dataset.map(d => d.commit.id.slice(0, 7)),
               datasets: [
                 {
-                  label: name,
-                  data: dataset.map(d => d.bench.value),
+                  label: formattedName, // Use the formatted name without the prefix
+                  data: dataset.map(d => (d.bench.value / 1_000_000).toFixed(3)), // Convert ns to ms
                   borderColor: color,
                   backgroundColor: color + '60', // Add alpha for #rrggbbaa
                 }
@@ -244,7 +255,7 @@
                   {
                     scaleLabel: {
                       display: true,
-                      labelString: dataset.length > 0 ? dataset[0].bench.unit : '',
+                      labelString: 'Time (ms)', // Update to milliseconds
                     },
                     ticks: {
                       beginAtZero: true,
@@ -261,10 +272,10 @@
                   },
                   label: item => {
                     let label = item.value;
-                    const { range, unit } = dataset[item.index].bench;
-                    label += ' ' + unit;
+                    const { range } = dataset[item.index].bench;
+                    label += ' ms'; // Update unit to ms
                     if (range) {
-                      label += ' (' + range + ')';
+                      label += ' (' + range.map(r => (r / 1_000_000).toFixed(3)).join('-') + ')'; // Adjust range to ms
                     }
                     return label;
                   },
@@ -278,7 +289,6 @@
                 if (activeElems.length === 0) {
                   return;
                 }
-                // XXX: Undocumented. How can we know the index?
                 const index = activeElems[0]._index;
                 const url = dataset[index].commit.url;
                 window.open(url, '_blank');
