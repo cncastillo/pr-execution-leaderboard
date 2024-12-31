@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735662775755,
+  "lastUpdate": 1735665841031,
   "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -102,6 +102,32 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 9267,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "committer": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "id": "35b2647928b07c0dbdb9e307bfea06634123a681",
+          "message": "Test1",
+          "timestamp": "2024-12-31T16:01:15Z",
+          "url": "https://github.com/Stockless/pr-execution-leaderboard/pull/4/commits/35b2647928b07c0dbdb9e307bfea06634123a681"
+        },
+        "date": 1735665840766,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/Stockless",
+            "value": 932547,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
