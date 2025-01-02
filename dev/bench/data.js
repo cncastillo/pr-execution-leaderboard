@@ -24,6 +24,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 2.795,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1000,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -50,6 +51,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 92502,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -76,6 +78,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -102,6 +105,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -128,6 +132,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 932547,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -156,6 +161,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 2.795,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1000,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -184,6 +190,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -212,6 +219,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/Stockless",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -240,6 +248,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -268,6 +277,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -296,6 +306,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9268,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -324,6 +335,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -352,6 +364,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -380,6 +393,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -408,6 +422,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -436,6 +451,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9268,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -462,6 +478,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
@@ -488,6 +505,7 @@ window.BENCHMARK_DATA = {
           {
             "name": "function1/cncastillo",
             "value": 9267,
+            "std": 0.123,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }

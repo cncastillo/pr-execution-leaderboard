@@ -184,10 +184,11 @@
               
               // Convert time value from ns to ms
               const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
+              const stdInMs = (entry.std / 1_000_000).toFixed(3); // Convert std to ms
               
               // Create leaderboard item with "ms" as the unit
               const listItem = document.createElement("li");
-              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (Commit: ${entry.commit})`;
+              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${stdInMs} ms) (Commit: ${entry.commit})`;
               leaderboardContainer.appendChild(listItem);
             });
           }
