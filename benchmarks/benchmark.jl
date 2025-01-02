@@ -27,10 +27,9 @@ benchmark_data = [
                         Dict(
                             "allocs" => median(results[github_username]).allocs,
                             "time" => median(results[github_username]).time,
-                            "std" => std(results[github_username]).time,
                             "memory" => median(results[github_username]).memory,
                             "params" => median(results[github_username]).params,
-                            "gctime" => median(results[github_username]).gctime
+                            "gctime" => std(results[github_username]).time
                         )
                     ]
                 ),
