@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735791048221,
+  "lastUpdate": 1735791491333,
   "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -457,6 +457,32 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/Stockless/pr-execution-leaderboard/pull/7/commits/c8a74d3d74713b910387d78956dd70749b49ec6a"
         },
         "date": 1735791047380,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/cncastillo",
+            "value": 9267,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "committer": {
+            "name": "Stockless",
+            "username": "Stockless"
+          },
+          "id": "b6d262dd97304369cd9bc1de082a81ff0ceba4a5",
+          "message": "Fix-ci",
+          "timestamp": "2024-12-31T22:13:30Z",
+          "url": "https://github.com/Stockless/pr-execution-leaderboard/pull/7/commits/b6d262dd97304369cd9bc1de082a81ff0ceba4a5"
+        },
+        "date": 1735791490915,
         "tool": "julia",
         "benches": [
           {
