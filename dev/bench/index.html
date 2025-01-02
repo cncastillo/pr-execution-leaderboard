@@ -98,12 +98,20 @@
       </div>
     </header>
     <main id="main">
-      <div id="leaderboard" class="benchmark-set" style="text-align: center; margin: 20px auto; max-width: 600px; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <h1 class="benchmark-title" style="font-size: 24px; color: #4CAF50; margin-bottom: 15px;">🏆 Leaderboard 🏆</h1>
-        <ul id="leaderboard-list" style="list-style-type: none; padding: 0; font-size: 18px; color: #333; line-height: 1.8;">
-          <!-- Dynamic leaderboard items will be added here -->
-        </ul>
-      </div>    
+      <div class="leaderboards-row" style="display: flex; justify-content: space-around;">
+        <div id="leaderboard-function1" class="benchmark-set" style="text-align: center; margin: 20px auto; max-width: 600px; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h1 class="benchmark-title" style="font-size: 24px; color: #4CAF50; margin-bottom: 15px;">🏆 Function 1 Leaderboard 🏆</h1>
+          <ul id="leaderboard-list-function1" style="list-style-type: none; padding: 0; font-size: 18px; color: #333; line-height: 1.8;">
+            <!-- Dynamic leaderboard items will be added here -->
+          </ul>
+        </div>
+        <div id="leaderboard-function2" class="benchmark-set" style="text-align: center; margin: 20px auto; max-width: 600px; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h1 class="benchmark-title" style="font-size: 24px; color: #4CAF50; margin-bottom: 15px;">🏆 Function 2 Leaderboard 🏆</h1>
+          <ul id="leaderboard-list-function2" style="list-style-type: none; padding: 0; font-size: 18px; color: #333; line-height: 1.8;">
+            <!-- Dynamic leaderboard items will be added here -->
+          </ul>
+        </div>
+      </div>
     </main>
     <footer>
       <button id="dl-button">Download data as JSON</button>
@@ -150,7 +158,7 @@
             }
             return map;
           }
-          function calculateLeaderboard(entries) {
+          function calculateLeaderboard(entries, functionNumber) {
             const fastestMap = new Map();
 
             for (const entry of entries) {
@@ -159,14 +167,16 @@
                   const userKey = bench.name; // Use the name (e.g., "function1/Stockless") as the unique identifier.
                   const gctimeMatch = bench.extra.match(/gctime=(\d+(\.\d+)?)/);
                   const gctime = gctimeMatch ? parseFloat(gctimeMatch[1]) : 0;
-                  if (!fastestMap.has(userKey) || bench.value < fastestMap.get(userKey).value) {
-                    fastestMap.set(userKey, {
-                      name: bench.name,
-                      value: bench.value,
-                      gctime: gctime, // Use gctime value
-                      tool: entry.tool,
-                      commit: entry.commit.id.slice(0, 7),
-                    });
+                  if (bench.name.startsWith(`function${functionNumber}/`)) {
+                    if (!fastestMap.has(userKey) || bench.value < fastestMap.get(userKey).value) {
+                      fastestMap.set(userKey, {
+                        name: bench.name,
+                        value: bench.value,
+                        gctime: gctime, // Use gctime value
+                        tool: entry.tool,
+                        commit: entry.commit.id.slice(0, 7),
+                      });
+                    }
                   }
                 }
               }
@@ -178,16 +188,16 @@
               .slice(0, 10); // Top 10 fastest results
           }
 
-          function renderLeaderboard(leaderboard) {
-            const leaderboardContainer = document.getElementById("leaderboard-list");
+          function renderLeaderboard(leaderboard, containerId) {
+            const leaderboardContainer = document.getElementById(containerId);
             leaderboardContainer.innerHTML = ""; // Clear any existing content
             leaderboard.forEach((entry, index) => {
-              // Remove "function1/" prefix if present
-              const formattedName = entry.name.replace(/^function1\//, '');
+              // Remove "function*number*/" prefix if present
+              const formattedName = entry.name.replace(/^function\d+\//, '');
               
               // Convert time value from ns to ms
-              const timeInMs = (entry.value / 1_000_000).toFixed(3); 
-              const gctimeInUs = entry.gctime.toFixed(1); 
+              const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
+              const gctimeInUs = entry.gctime.toFixed(1); // Keep gctime in µs
               
               // Create leaderboard item with "ms" as the unit
               const listItem = document.createElement("li");
@@ -212,8 +222,11 @@
             a.download = 'benchmark_data.json';
             a.click();
           };
-          const leaderboard = calculateLeaderboard(Object.values(data.entries).flat());
-          renderLeaderboard(leaderboard);
+
+          const leaderboardFunction1 = calculateLeaderboard(Object.values(data.entries).flat(), 1);
+          const leaderboardFunction2 = calculateLeaderboard(Object.values(data.entries).flat(), 2);
+          renderLeaderboard(leaderboardFunction1, "leaderboard-list-function1");
+          renderLeaderboard(leaderboardFunction2, "leaderboard-list-function2");
 
           // Prepare data points for charts
           return Object.keys(data.entries).map(name => ({
@@ -231,8 +244,8 @@
 
             const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
             
-            // Remove "function1/" prefix from the name
-            const formattedName = name.replace(/^function1\//, '');
+            // Remove "function*number*/" prefix from the name
+            const formattedName = name.replace(/^function\d+\//, '');
             
             const data = {
               labels: dataset.map(d => d.commit.id.slice(0, 7)),
