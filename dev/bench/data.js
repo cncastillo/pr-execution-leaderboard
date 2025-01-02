@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1735683342986,
+  "lastUpdate": 1735786031645,
   "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -211,6 +211,34 @@ window.BENCHMARK_DATA = {
         "benches": [
           {
             "name": "function1/Stockless",
+            "value": 9267,
+            "unit": "ns",
+            "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Stockless",
+            "username": "Stockless",
+            "email": "mar.stockle@gmail.com"
+          },
+          "committer": {
+            "name": "Stockless",
+            "username": "Stockless",
+            "email": "mar.stockle@gmail.com"
+          },
+          "id": "059fabca9943bbeb816efb54d5c522f50f883705",
+          "message": "removed performance alert",
+          "timestamp": "2024-12-31T22:13:24Z",
+          "url": "https://github.com/Stockless/pr-execution-leaderboard/commit/059fabca9943bbeb816efb54d5c522f50f883705"
+        },
+        "date": 1735786031210,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/cncastillo",
             "value": 9267,
             "unit": "ns",
             "extra": "gctime=0\nmemory=0\nallocs=0\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
