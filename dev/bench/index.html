@@ -157,10 +157,13 @@
               for (const bench of entry.benches) {
                 if (!bench.range || bench.range.length === 0) {
                   const userKey = bench.name; // Use the name (e.g., "function1/Stockless") as the unique identifier.
+                  const gctimeMatch = bench.extra.match(/gctime=(\d+(\.\d+)?)/);
+                  const gctime = gctimeMatch ? parseFloat(gctimeMatch[1]) : 0;
                   if (!fastestMap.has(userKey) || bench.value < fastestMap.get(userKey).value) {
                     fastestMap.set(userKey, {
                       name: bench.name,
                       value: bench.value,
+                      gctime: gctime, // Use gctime value
                       tool: entry.tool,
                       commit: entry.commit.id.slice(0, 7),
                     });
@@ -184,11 +187,11 @@
               
               // Convert time value from ns to ms
               const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
-              const stdInMs = (entry.std / 1_000_000).toFixed(3); // Convert std to ms
+              const gctimeInMs = (entry.gctime / 1_000_000).toFixed(3); // Convert gctime to ms
               
               // Create leaderboard item with "ms" as the unit
               const listItem = document.createElement("li");
-              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${stdInMs} ms) (Commit: ${entry.commit})`;
+              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${gctimeInMs} ms) (Commit: ${entry.commit})`;
               leaderboardContainer.appendChild(listItem);
             });
           }
