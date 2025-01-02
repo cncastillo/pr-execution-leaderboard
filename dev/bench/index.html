@@ -186,12 +186,12 @@
               const formattedName = entry.name.replace(/^function1\//, '');
               
               // Convert time value from ns to ms
-              const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
-              const gctimeInMs = (entry.gctime / 1_000_000).toFixed(3); // Convert gctime to ms
+              const timeInMs = (entry.value / 1_000_000).toFixed(3); 
+              const gctimeInUs = entry.gctime.toFixed(1); 
               
               // Create leaderboard item with "ms" as the unit
               const listItem = document.createElement("li");
-              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${gctimeInMs} ms) (Commit: ${entry.commit})`;
+              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${gctimeInUs} µs) (Commit: ${entry.commit})`;
               leaderboardContainer.appendChild(listItem);
             });
           }
