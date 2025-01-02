@@ -17,23 +17,27 @@ results = run(suite, verbose=true)
 # Prepare the benchmark data
 benchmark_data = [
     Dict("Julia" => string(VERSION), "BenchmarkTools" => string(Pkg.installed()["BenchmarkTools"])),
-    Dict(
-        "BenchmarkGroup" => Dict(
-            "data" => Dict(
-                github_username => Dict(
-                    "TrialEstimate" => Dict(
-                        "allocs" => median(results[github_username]).allocs,
-                        "time" => median(results[github_username]).time,
-                        "std" => std(results[github_username]).time,
-                        "memory" => median(results[github_username]).memory,
-                        "params" => median(results[github_username]).params,
-                        "gctime" => median(results[github_username]).gctime
-                    )
-                )
-            ),
-            "tags" => []
-        )
-    )
+    [
+        [
+            "BenchmarkGroup",
+            Dict(
+                "data" => Dict(
+                    github_username => [
+                        "TrialEstimate",
+                        Dict(
+                            "allocs" => median(results[github_username]).allocs,
+                            "time" => median(results[github_username]).time,
+                            "std" => std(results[github_username]).time,
+                            "memory" => median(results[github_username]).memory,
+                            "params" => median(results[github_username]).params,
+                            "gctime" => median(results[github_username]).gctime
+                        )
+                    ]
+                ),
+                "tags" => []
+            )
+        ]
+    ]
 ]
 
 # Save the benchmark results to a JSON file
