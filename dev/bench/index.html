@@ -195,8 +195,8 @@
             const leaderboardContainer = document.getElementById(containerId);
             leaderboardContainer.innerHTML = ""; // Clear any existing content
             leaderboard.forEach((entry, index) => {
-              // Remove "function*number*/" prefix if present
-              const formattedName = entry.name.replace(/^function\d+\//, '');
+              // Extract the username for the leaderboard
+              const formattedName = entry.name.split('/')[1];
               
               // Convert time value from ns to ms
               const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
@@ -247,14 +247,14 @@
 
             const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
             
-            // Remove "function*number*/" prefix from the name
-            const formattedName = name.replace(/^function\d+\//, '');
+            // Remove username from the name
+            const formattedName = name.replace(/\/[^\/]+$/, '');
             
             const data = {
               labels: dataset.map(d => d.commit.id.slice(0, 7)),
               datasets: [
                 {
-                  label: formattedName, // Use the formatted name without the prefix
+                  label: formattedName, // Use the formatted name without the username
                   data: dataset.map(d => (d.bench.value / 1_000_000).toFixed(3)), // Convert ns to ms
                   borderColor: color,
                   backgroundColor: color + '60', // Add alpha for #rrggbbaa
@@ -301,7 +301,7 @@
                   },
                   afterLabel: item => {
                     const { extra } = dataset[item.index].bench;
-                    return extra ? '\n' + extra : '';
+                    return extra ? '\n' + extra.replace('gctime', 'stdtime') : ''; // Replace gctime with stdtime
                   }
                 }
               },
