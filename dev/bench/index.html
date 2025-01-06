@@ -112,6 +112,9 @@
           </ul>
         </div>
       </div>
+      <div id="graphs-container" class="benchmark-set" style="margin: 20px auto; max-width: 1200px;">
+        <!-- Dynamic graphs will be added here -->
+      </div>
     </main>
     <footer>
       <button id="dl-button">Download data as JSON</button>
@@ -338,10 +341,48 @@
             }
           }
 
-          const main = document.getElementById('main');
-          for (const {name, dataSet} of dataSets) {
-            renderBenchSet(name, dataSet, main);
-          }
+          const main = document.getElementById('graphs-container');
+          const groupedData = new Map();
+
+          // Group data by username
+          dataSets.forEach(({name, dataSet}) => {
+            for (const [benchName, benches] of dataSet.entries()) {
+              const match = benchName.match(/^function\d+\/(.+)$/);
+              if (match) {
+                const username = match[1];
+                if (!groupedData.has(username)) {
+                  groupedData.set(username, new Map());
+                }
+                groupedData.get(username).set(benchName, benches);
+              }
+            }
+          });
+
+          // Render each username group
+          groupedData.forEach((benchSet, username) => {
+            const userContainer = document.createElement('div');
+            userContainer.className = 'user-group';
+            userContainer.style.marginBottom = '40px';
+            main.appendChild(userContainer);
+
+            const userTitle = document.createElement('h2');
+            userTitle.textContent = username;
+            userTitle.style.textAlign = 'center';
+            userContainer.appendChild(userTitle);
+
+            const graphsContainer = document.createElement('div');
+            graphsContainer.className = 'graphs-container';
+            graphsContainer.style.display = 'grid';
+            graphsContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(550px, 1fr))';
+            graphsContainer.style.gap = '100px';
+            userContainer.appendChild(graphsContainer);
+
+            benchSet.forEach((benches, benchName) => {
+              const graphWrapper = document.createElement('div');
+              graphsContainer.appendChild(graphWrapper);
+              renderGraph(graphWrapper, benchName, benches);
+            });
+          });
         }
 
         renderAllChars(init()); // Start
