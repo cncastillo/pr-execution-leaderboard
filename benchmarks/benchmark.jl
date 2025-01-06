@@ -14,7 +14,7 @@ t_max = 5.0                    #Simulation maximum time
 # Define the benchmark
 suite = BenchmarkGroup()
 suite["function1"][github_username] = @benchmarkable solver(m0, b, Δt, t_max, FEuler())
-suite["function2"][github_username] = @benchmarkable solver(m0, b, Δt, t_max, Reference())
+suite["function2"][github_username] = @benchmarkable solver(m0, b, Δt, t_max, RK2())
 
 # Tune and run the benchmark
 tune!(suite)

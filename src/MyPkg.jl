@@ -1,12 +1,12 @@
 module MyPkg
 
-export FEuler, Reference, solver, SimulationMethod
+export FEuler, RK2, solver, SimulationMethod
 
 # A simple function to demonstrate benchmarking
 #Definition of solvers
 abstract type SimulationMethod end
 struct FEuler <: SimulationMethod end
-struct Reference <: SimulationMethod end
+struct RK2 <: SimulationMethod end
 
 #Initialization of variables and constants
 γ = 2.675e8         #Frequency of hydrogen (rad/(s*T))
@@ -21,20 +21,24 @@ function bloch_model!(dm, m, b)
     dm[3] = γ * (m[1] * b[2] - m[2] * b[1]) - (m[3] - M_0) / T1
 end
 
-function solver(m0, b, Δt, t_max, method::Reference)
-    t = 0:Δt:t_max
-    Mx = @. m0[1] * exp(-t / T2) * cos(γ * b[3] * t) + m0[2] * exp(-t / T2) * sin(γ * b[3] * t)
-    My = @. m0[2] * exp(-t / T2) * cos(γ * b[3] * t) - m0[1] * exp(-t / T2) * sin(γ * b[3] * t)
-    Mz = @. M_0 + (m0[3] - M_0) * exp(-t / T1)
-
-    return [Mx, My, Mz]
-end
-
 #Definition of forward euler method
 function step!(Δt, m_new, m_old, b, method::FEuler)
     dm = [0.0, 0.0, 0.0]
     bloch_model!(dm, m_old, b)
     m_new .= m_old .+ Δt .* dm
+    return nothing
+end
+
+#Definition of runge kutta 2 method (trapezoidal)
+function step!(Δt, m_new, m_old, b, method::RK2)
+    #Prediction step
+    dm = [0.0, 0.0, 0.0]
+    bloch_model!(dm, m_old, b)
+    m_pred = m_old .+ Δt .* dm
+    #Correction step
+    dm_pred = [0.0, 0.0, 0.0]
+    bloch_model!(dm_pred, m_pred, b)
+    m_new .= m_old .+ (Δt / 2) .* (dm + dm_pred)
     return nothing
 end
 
