@@ -198,13 +198,13 @@
               // Extract the username for the leaderboard
               const formattedName = entry.name.split('/')[1];
               
-              // Convert time value from ns to ms
-              const timeInMs = (entry.value / 1_000_000).toFixed(3); // Keep three decimal places
+              // Convert time value from ns to µs
+              const timeInUs = (entry.value / 1_000).toFixed(3); // Keep three decimal places
               const gctimeInUs = entry.gctime.toFixed(1); // Keep gctime in µs
               
-              // Create leaderboard item with "ms" as the unit
+              // Create leaderboard item with "µs" as the unit
               const listItem = document.createElement("li");
-              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInMs} ms (±${gctimeInUs} µs) (Commit: ${entry.commit})`;
+              listItem.textContent = `${index + 1}. ${formattedName} - ${timeInUs} µs (±${gctimeInUs} µs) (Commit: ${entry.commit})`;
               leaderboardContainer.appendChild(listItem);
             });
           }
