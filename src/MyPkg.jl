@@ -27,10 +27,10 @@ end
 """Solve with Theoretical solution."""
 function solve(m0, dt, tmax, method::Theoretical)
   t = 0:dt:tmax
-  x = cos.(gamma .* Bz .* t) .* exp.(-t ./ T2)
-  y = -sin.(gamma .* Bz .* t) .* exp.(-t ./ T2)
-  z = 1 .- exp.(-t ./ T1)
-  return m0 .* [x'; y'; z']
+  x = m0[1] .* cos.(gamma .* Bz .* t) .* exp.(-t ./ T2)
+  y = m0[1] .* -sin.(gamma .* Bz .* t) .* exp.(-t ./ T2)
+  z = m0[1] .* 1 .- exp.(-t ./ T1)
+  return [x'; y'; z']
 end
 
 "Solve with a numerical method."

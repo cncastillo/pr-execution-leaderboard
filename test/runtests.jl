@@ -1,7 +1,7 @@
 using Test
 using MyPkg
 
-m0 = 1
+m0 = [1.0, 0, 0]
 dt = 0.0000001
 tmax = 3
 
