@@ -1,4 +1,12 @@
 name = "MyPkg"
-uuid = "b59f1ed4-4c8e-4fc7-a035-90d7cbd7aaf3"
-authors = ["Carlos Castillo Passi <cncastillo@uc.cl>"]
+uuid = "2bf06ba8-a665-4322-8cf2-8863223bd107"
+authors = ["David Cozmar <davidcozmar@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
+[compat]
+Documenter = "1.8.0"
+LinearAlgebra = "1.11.0"
