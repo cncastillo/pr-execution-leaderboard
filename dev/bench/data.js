@@ -1,9 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736185920604,
-  "repoUrl": "https://github.com/Stockless/pr-execution-leaderboard",
+  "lastUpdate": 1736540472599,
+  "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
-
       {
         "commit": {
           "author": {
@@ -65,6 +64,32 @@ window.BENCHMARK_DATA = {
             "value": 3290289,
             "unit": "ns",
             "extra": "gctime=278965.49502913683\nmemory=4280112\nallocs=180002\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "3f2c30f123fd14fe8c452c676ac8f8b52ad1036e",
+          "message": "Add pdpino's code and test",
+          "timestamp": "2025-01-10T19:44:25Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/9/commits/3f2c30f123fd14fe8c452c676ac8f8b52ad1036e"
+        },
+        "date": 1736540472343,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/pdpino",
+            "value": 5080929.5,
+            "unit": "ns",
+            "extra": "gctime=378288.7017736658\nmemory=3000112\nallocs=90002\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
