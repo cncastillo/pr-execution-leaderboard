@@ -38,10 +38,10 @@ function solve(m0, dt, tmax, method)
   n_steps = length(0:dt:tmax)
   m = m0
   mt = zeros(3, n_steps)
-  mt[:, 1] = m
+  mt[:, 1] .= m
   for i in 2:n_steps
     m = step(dt, m, method)
-    mt[:, i] = m
+    mt[:, i] .= m
   end
   return mt
 end
