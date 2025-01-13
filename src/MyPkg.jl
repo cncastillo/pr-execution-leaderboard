@@ -23,7 +23,7 @@ function solve(m0, dt, tmax, method::Theoretical)
 	]'
 end
 
-function solve(m0, dt, tmax, method)
+function solve(m0, dt, tmax, method::ForwardEuler)
 	Nsteps = Int(tmax / dt)
 	m = SVector{3}(m0)
 	mt = zeros(Float64, (Nsteps, 3))

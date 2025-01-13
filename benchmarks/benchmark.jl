@@ -12,7 +12,7 @@ tmax = 3.0
 # Define the benchmark
 suite = BenchmarkGroup()
 # suite["function1"][github_username] = @benchmarkable solve(m0, Δt, tmax, ForwardEuler())
-suite["function2"][github_username] = @benchmarkable solve(m0, Δt, tmax, params, ForwardEuler())
+suite["function2"][github_username] = @benchmarkable solve(m0, Δt, tmax, ForwardEuler())
 
 # Tune and run the benchmark
 tune!(suite)
