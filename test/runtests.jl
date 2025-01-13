@@ -14,6 +14,6 @@ const B = SA[0.0, 0.0, Bz]
 const tmax = 3.0
 const m0 = SA[M0, 0.0, 0.0]
 
-dt = 1e-1
+dt = 1e-3
 
-@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(M0, dt, 3.0, Theoretical())[1, end]) <= 1e-3
+@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(M0, dt, 3.0, Theoretical())[end, 1]) <= 1e-3
