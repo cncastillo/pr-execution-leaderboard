@@ -1,7 +1,7 @@
 module MyPkg
 
 using StaticArrays
-using LinearAlgebra
+# using LinearAlgebra
 
 const γ = 2 * π * 42.58 * 1e6 # rad s^-1 T^-1
 const T₁ = 1.0  # s
@@ -23,10 +23,6 @@ function solve(m0, dt, tmax, method::Theoretical)
 	]'
 end
 
-function step(dt, m)
-	return m .+ dt * bloch(m)
-end
-
 function solve(m0, dt, tmax, method)
 	Nsteps = Int(tmax / dt)
 	m = SVector{3}(m0)
@@ -42,20 +38,6 @@ end
 struct ForwardEuler
 end
 
-"Returns the magnetization vector at the next time step using the Forward Euler method."
-function step(dt, m, method::ForwardEuler)
-	return m .+ dt * bloch(m)
-end
-
-"Returns the time derivative of the magnetization vector m."
-function bloch(m)
-	M₁, M₂, M₃ = m
-	B₁, B₂, B₃ = B
-	M₀ = m0[1]
-	crossmB = [M₂ * B₃ - M₃ * B₂; M₃ * B₁ - M₁ * B₃; M₁ * B₂ - M₂ * B₁]
-	return γ * crossmB - [M₁ / T₂; M₂ / T₂; (M₃ - M₀) / T₁]
-end
-
-export solve, step, ForwardEuler, Theoretical
+export solve, ForwardEuler, Theoretical
 
 end # module MyPkg
