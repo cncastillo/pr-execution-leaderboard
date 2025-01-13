@@ -3,4 +3,4 @@ Manifest.toml
 *.ji
 *.log
 
-/tmp/
+/tmp/Manifest.toml
