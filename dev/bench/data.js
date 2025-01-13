@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736796769259,
+  "lastUpdate": 1736797398092,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -298,6 +298,32 @@ window.BENCHMARK_DATA = {
             "value": 356363,
             "unit": "ns",
             "extra": "gctime=78117.1926035447\nmemory=792352\nallocs=9005\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "4ba68f080061cf0c43ca3aaa9bbf4a19805f9da7",
+          "message": "Fiercoli",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/21/commits/4ba68f080061cf0c43ca3aaa9bbf4a19805f9da7"
+        },
+        "date": 1736797397653,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/fercoli",
+            "value": 69105285.5,
+            "unit": "ns",
+            "extra": "gctime=1205903.7331140228\nmemory=12063872\nallocs=272491\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
