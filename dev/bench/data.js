@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736776652345,
+  "lastUpdate": 1736780854581,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -142,6 +142,32 @@ window.BENCHMARK_DATA = {
             "value": 650750,
             "unit": "ns",
             "extra": "gctime=101278.49639420773\nmemory=1752048\nallocs=21002\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "5fcf75b78f23ffc50cf48f10bc777d4da58a647b",
+          "message": "Miguel escobar",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/16/commits/5fcf75b78f23ffc50cf48f10bc777d4da58a647b"
+        },
+        "date": 1736780853612,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/Miguel-Escobar",
+            "value": 27812,
+            "unit": "ns",
+            "extra": "gctime=27955.58644714969\nmemory=72112\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
