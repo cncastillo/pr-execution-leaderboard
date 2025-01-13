@@ -1,12 +1,11 @@
 using BenchmarkTools
 using MyPkg
-using StaticArrays
 
 # Get GitHub username from environment variable
 github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
 
 # Inputs
-m0   = SA_F32[1.0, 0.0, 0.0]
+m0   = [1.0, 0.0, 0.0]
 Δt   = 0.001f0
 tmax = 3.0f0
 
