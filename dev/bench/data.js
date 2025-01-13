@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736799434277,
+  "lastUpdate": 1736799503155,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -480,6 +480,32 @@ window.BENCHMARK_DATA = {
             "value": 18535,
             "unit": "ns",
             "extra": "gctime=22913.65420866167\nmemory=72112\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "273e09239ffb4d83ba878c04017ff277fb74eab1",
+          "message": "Testing GSahonero code",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/10/commits/273e09239ffb4d83ba878c04017ff277fb74eab1"
+        },
+        "date": 1736799502908,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function2/gsahonero",
+            "value": 58559,
+            "unit": "ns",
+            "extra": "gctime=34846.11762279481\nmemory=72048\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
