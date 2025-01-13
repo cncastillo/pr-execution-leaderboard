@@ -37,11 +37,16 @@ function bloch(m)
     return crossBz(m) .- (Ti .* m) .- m0t1
 end
 
+function zeros_via_calloc(::Type{T}, dims::Integer...) where T
+    ptr = Ptr{T}(Libc.calloc(prod(dims), sizeof(T)))
+    return unsafe_wrap(Array{T}, ptr, dims; own=true)
+ end
+
 
 function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
     m = SVector{3}(m0)
-    mt = zeros(Float64, (ceil(Int64,tmax/dt) + 1, 3))
+    mt = zeros_via_calloc(Float64, ceil(Int64,tmax/dt) + 1, 3)#zeros(Float64, (ceil(Int64,tmax/dt) + 1, 3))
     for i in 1:Nsteps
         m = step(dt, m, method)
         mt[i, :] .= m
