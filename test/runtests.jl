@@ -3,7 +3,7 @@ using MyPkg
 
 # Inputs
 m0   = [1.0, 0.0, 0.0]
-Δt   = 0.000001
+Δt   = 1e-5
 tmax = 3.0
 
 expected_result    = solve(m0, Δt, tmax, Theoretical())
