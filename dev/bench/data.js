@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736800268139,
+  "lastUpdate": 1736800700692,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -610,6 +610,32 @@ window.BENCHMARK_DATA = {
             "value": 30116,
             "unit": "ns",
             "extra": "gctime=24202.736478161736\nmemory=72048\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "5af9bf64a253b8e5a61f0ff990d4e04b7105ac1a",
+          "message": "fmunoz solution",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/14/commits/5af9bf64a253b8e5a61f0ff990d4e04b7105ac1a"
+        },
+        "date": 1736800700390,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function2/framunoz",
+            "value": 29676,
+            "unit": "ns",
+            "extra": "gctime=22520.096450886947\nmemory=72048\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
