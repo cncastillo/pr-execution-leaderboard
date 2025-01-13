@@ -1,6 +1,6 @@
 name = "MyPkg"
-uuid = "2a74e58f-679f-4a9f-958d-7b7cf6fec4cf"
-authors = ["migue <miguescobarm@gmail.com>"]
+uuid = "b59f1ed4-4c8e-4fc7-a035-90d7cbd7aaf3"
+authors = ["Carlos Castillo Passi <cncastillo@uc.cl>"]
 version = "0.1.0"
 
 [deps]
