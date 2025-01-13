@@ -11,6 +11,10 @@ const B = SA[0.0; 0.0; B₃]  # T
 const M₀ = 1.0
 const m0 = SA[M₀; 0.0; 0.0]
 
+
+const Ts = SA[1/T₂, 1/T₂, 1/T₁]
+const Mconst = SA[0.0, 0.0, M₀/T₁]
+
 struct Theoretical
 end
 
@@ -26,9 +30,13 @@ function solve(m0, dt, tmax, method::Theoretical)
 	]'
 end
 
-function bloch(m)
+function crossMB(m)
 	M₁, M₂, M₃ = m
-	return γ * SA[M₂*B₃, -M₁*B₃, 0.0] - SA[M₁/T₂, M₂/T₂, (M₃-M₀)/T₁]
+	return SA[M₂*B₃, -M₁*B₃, 0.0]
+end
+
+function bloch(m)::SVector{3, Float32}
+	return γ .* crossMB(m) .- m .* Ts + Mconst
 end
 
 function step(dt, m, method::ForwardEuler)
