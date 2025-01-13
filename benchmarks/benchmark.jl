@@ -5,14 +5,14 @@ using MyPkg
 github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
 
 # Inputs
-m0   = [1.0, 0.0, 0.0]
-Δt   = 0.001
+m0 = [1.0, 0.0, 0.0]
+Δt = 0.001
 tmax = 3.0
 
 # Define the benchmark
 suite = BenchmarkGroup()
-suite["function1"][github_username] = @benchmarkable solve(m0, Δt, tmax, ForwardEuler())
-# suite["function2"][github_username] = @benchmarkable solve(m0, Δt, t_max, params, ForwardEuler())
+#suite["function1"][github_username] = @benchmarkable solve(m0, Δt, tmax, ForwardEuler())
+suite["function2"][github_username] = @benchmarkable solve(m0, Δt, t_max, params, ForwardEuler())
 
 # Tune and run the benchmark
 tune!(suite)
