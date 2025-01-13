@@ -3,10 +3,10 @@ using MyPkg
 
 # Inputs
 m0   = [1.0, 0.0, 0.0]
-Δt   = 0.001
+dt = 1e-3
 tmax = 3.0
 
 expected_result    = solve(m0, Δt, tmax, Theoretical())
 numerical_solution = solve(m0, Δt, tmax, ForwardEuler())
 
-@test sum((expected_result-numerical_solution).^2)/length(expected_result)<1e-1
+@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(M0, dt, 3.0, Theoretical())[end, 1]) <= 1e-3
