@@ -49,7 +49,7 @@ function solve(m0, dt, tmax, method)
 	mt = zeros(Float64, (Nsteps, 3))
 	for i in 1:Nsteps
 		m = step(dt, m, method)
-		mt[i, :] = m
+		mt[i, :] .= m
 	end
 	return mt
 end
