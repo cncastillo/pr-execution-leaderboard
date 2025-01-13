@@ -16,4 +16,4 @@ const m0 = SA[M0, 0.0, 0.0]
 
 dt = 1e-3
 
-@test abs(solve(m0, dt, 3.0, ForwardEuler())[end, 1] - solve(M0, dt, 3.0, Theoretical())[end, 1]) <= 1e-3
+@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(M0, dt, 3.0, Theoretical())[end, 1]) <= 1e-3
