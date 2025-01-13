@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736797506354,
+  "lastUpdate": 1736797933184,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -350,6 +350,32 @@ window.BENCHMARK_DATA = {
             "value": 27832,
             "unit": "ns",
             "extra": "gctime=30594.61715014721\nmemory=72112\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "196681906afbc92c6a6c7e3da64c20b34ea81eac",
+          "message": "feat: add david cozmar solution",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/23/commits/196681906afbc92c6a6c7e3da64c20b34ea81eac"
+        },
+        "date": 1736797932928,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/dafinguzman",
+            "value": 71945,
+            "unit": "ns",
+            "extra": "gctime=44238.13172936809\nmemory=72208\nallocs=4\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
