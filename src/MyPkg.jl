@@ -36,11 +36,11 @@ function crossMB(m)
 end
 
 function bloch(m)::SVector{3, Float32}
-	return γ .* crossMB(m) .- m .* Ts + Mconst
+	return @. γ * crossMB(m) - m * Ts + Mconst
 end
 
 function step(dt, m, method::ForwardEuler)
-	return m .+ dt * bloch(m)
+	return @. m + dt * bloch(m)
 end
 
 function solve(m0, dt, tmax, method)
