@@ -37,7 +37,7 @@ function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
     m = SVector{3}(m0)
     mt = zeros(Int(ceil(tmax/dt)) + 1, 3)
-    for i in 1:Nsteps
+    @inbounds for i in 1:Nsteps
         m = step(dt, m, method)
         mt[i, :] = m
     end
