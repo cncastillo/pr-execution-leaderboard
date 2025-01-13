@@ -1,35 +1,42 @@
 module MyPkg
 
-γ = 2 * π * 42.58 * 1e6  # rad s^-1 T^-1
-T₁ = 1.  # s
-T₂ = 0.5  # s
-B = [0.; 0.; 1e-7]  # T
-m0 = [1.; 0.; 0.]
+using StaticArrays
+using LinearAlgebra
+
+const γ = 2 * π * 42.58 * 1e6 # rad s^-1 T^-1
+const T₁ = 1.0  # s
+const T₂ = 0.5  # s
+const B₃ = 1e-7  # T
+const B = SA[0.0; 0.0; B₃]  # T
+const M₀ = 1.0
+const m0 = SA[M₀; 0.0; 0.0]
 
 struct Theoretical
 end
 
-"Returns the theoretical solution of the Bloch equations for a given initial magnetization m0, time step dt, maximum time tmax."
 function solve(m0, dt, tmax, method::Theoretical)
-    t = dt:dt:tmax
-    M₀ = m0[1]
-    B₃ = B[3]
-    M₁ = M₀ * cos.(γ * B₃ * t) .* exp.(-t / T₂)
-    M₂ = -M₀ * sin.(γ * B₃ * t) .* exp.(-t / T₂)
-    M₃ = M₀ * (1 .- exp.(-t / T₁))
-    return [M₁'; M₂'; M₃']
+	t = collect(Float32, dt:dt:tmax)
+	return SA[
+		@. M₀ * cos(γ * B₃ * t) * exp(-t / T₂);
+		@. -M₀ * sin(γ * B₃ * t) * exp(-t / T₂);
+		@. M₀ * (1 - exp(-t / T₁))
+	]'
 end
 
-"Simulates the Bloch equations for a given initial magnetization m0, time step dt, maximum time tmax and a simulation method."
+function step(dt, m)
+	return m .+ dt * bloch(m)
+end
+
 function solve(m0, dt, tmax, method)
-    Nsteps = Int(tmax / dt)
-    m = m0
-    mt = zeros(eltype(m), (length(m), Nsteps))
-    for i in 1:Nsteps
-        m = step(dt, m, method)
-        mt[:, i] = m
-    end
-    return mt
+	Nsteps = Int(tmax / dt)
+	m = SVector{3}(m0)
+	mt = zeros(Float64, (Nsteps, 3))
+	for i in 1:Nsteps
+		M₁, M₂, M₃ = m
+		m = m .+ (dt * γ) .* SA[M₂*B₃-M₁/T₂, -M₁*B₃+M₂/T₂, (M₃-M₀)/T₁]
+		mt[i, :] = m
+	end
+	return mt
 end
 
 struct ForwardEuler
@@ -37,16 +44,16 @@ end
 
 "Returns the magnetization vector at the next time step using the Forward Euler method."
 function step(dt, m, method::ForwardEuler)
-    return m .+ dt * bloch(m)
+	return m .+ dt * bloch(m)
 end
 
 "Returns the time derivative of the magnetization vector m."
 function bloch(m)
-    M₁, M₂, M₃ = m
-    B₁, B₂, B₃ = B
-    M₀ = m0[1]
-    crossmB = [M₂ * B₃ - M₃ * B₂; M₃ * B₁ - M₁ * B₃; M₁ * B₂ - M₂ * B₁]
-    return γ * crossmB - [M₁ / T₂; M₂ / T₂; (M₃ - M₀) / T₁]
+	M₁, M₂, M₃ = m
+	B₁, B₂, B₃ = B
+	M₀ = m0[1]
+	crossmB = [M₂ * B₃ - M₃ * B₂; M₃ * B₁ - M₁ * B₃; M₁ * B₂ - M₂ * B₁]
+	return γ * crossmB - [M₁ / T₂; M₂ / T₂; (M₃ - M₀) / T₁]
 end
 
 export solve, step, ForwardEuler, Theoretical
