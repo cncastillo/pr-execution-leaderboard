@@ -11,6 +11,8 @@ const T2 = 0.5
 const Bz = 1e-7
 const gammaBz = gamma * Bz
 
+const M0T1 = -M0/T1
+
 const Ti = SA[1/T2, 1/T2, 1/T1]
 const m0t1 = SA[0.0,0.0, M0/T1]
 const B = SA[0.0, 0.0, Bz]
@@ -29,12 +31,12 @@ function step(dt, m, method::ForwardEuler)
     return m .+ dt .* bloch(m)
 end
 
-function crossBz(a)
-    return @SVector [a[2] * gammaBz, -a[1] * gammaBz, 0.0]
+function aux(a)
+    return @SVector [a[2] * gammaBz, -a[1] * gammaBz, M0T1]
   end
 
 function bloch(m)
-    return crossBz(m) .- (Ti .* m) .- m0t1
+    return aux(m) .- (Ti .* m) 
 end
 
 function zeros_via_calloc(::Type{T}, dims::Integer...) where T
@@ -47,7 +49,7 @@ function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
     m = SVector{3}(m0)
     mt = zeros_via_calloc(Float64, ceil(Int64,tmax/dt) + 1, 3)#zeros(Float64, (ceil(Int64,tmax/dt) + 1, 3))
-    for i in 1:Nsteps
+    @inbounds for i in 1:Nsteps
         m = step(dt, m, method)
         mt[i, :] .= m
     end
