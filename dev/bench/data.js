@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736797933184,
+  "lastUpdate": 1736798185719,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -376,6 +376,32 @@ window.BENCHMARK_DATA = {
             "value": 71945,
             "unit": "ns",
             "extra": "gctime=44238.13172936809\nmemory=72208\nallocs=4\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "a2399ecd08c1ea7f8363a7a40e9a51b92ea642a5",
+          "message": "Spincheira",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/17/commits/a2399ecd08c1ea7f8363a7a40e9a51b92ea642a5"
+        },
+        "date": 1736798185481,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function1/Sebastijo",
+            "value": 539197,
+            "unit": "ns",
+            "extra": "gctime=118562.92001107232\nmemory=1264016\nallocs=23497\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
