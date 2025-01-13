@@ -4,20 +4,20 @@ using StaticArrays
 
 export solve, step, Theoretical, ForwardEuler
 
-const gamma = 2pi * 42.58 * 1e6
-const M0 = 1.0
-const T1 = 1.0
-const T2 = 0.5
-const Bz = 1e-7
-const gammaBz = gamma * Bz
+const gamma::Float32 = 2pi * 42.58 * 1e6
+const M0::Float32 = 1.0
+const T1::Float32 = 1.0
+const T2::Float32 = 0.5
+const Bz::Float32 = 1e-7
+const gammaBz::Float32 = gamma * Bz
 
-const M0T1 = -M0/T1
+const M0T1::Float32 = -M0/T1
 
-const Ti = SA[1/T2, 1/T2, 1/T1]
-const m0t1 = SA[0.0,0.0, M0/T1]
-const B = SA[0.0, 0.0, Bz]
-const tmax = 3.0
-const m0 = SA[M0, 0.0, 0.0]
+const Ti = SA{Float32}[1/T2, 1/T2, 1/T1]
+const m0t1 = SA{Float32}[0.0,0.0, M0/T1]
+const B = SA{Float32}[0.0, 0.0, Bz]
+const tmax::Float32 = 3.0
+const m0 = SA{Float32}[M0, 0.0, 0.0]
 
 struct ForwardEuler
 
@@ -47,8 +47,8 @@ function zeros_via_calloc(::Type{T}, dims::Integer...) where T
 
 function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
-    m = SVector{3}(m0)
-    mt = zeros_via_calloc(Float64, ceil(Int64,tmax/dt) + 1, 3)#zeros(Float64, (ceil(Int64,tmax/dt) + 1, 3))
+    m = SVector{3, Float32}(m0)
+    mt = zeros_via_calloc(Float32, ceil(Int64,tmax/dt) + 1, 3)#zeros(Float64, (ceil(Int64,tmax/dt) + 1, 3))
     gammaBzdt, M0T1dt, Tidt = gammaBz * dt, M0T1 * dt, Ti .* dt
     @inbounds for i in 1:Nsteps
         m = step(dt, m,gammaBzdt, M0T1dt, Tidt, method)
