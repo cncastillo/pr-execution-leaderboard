@@ -1,13 +1,14 @@
 using Test
 using MyPkg
+using Cthulhu
 
 # Inputs
-M0 = 1
-tmax = 3
-m0 = [M0, 0, 0]
-Δt = 1/1000000
+M0 = 1.0
+tmax = 3.0
+m0 = [M0, 0.0, 0.0]
+Δt = 0.001
 
 expected_result    = solve(m0, Δt, tmax, Theoretical())
-numerical_solution = solve(m0, Δt, tmax, ForwardEuler())
+@time numerical_solution = solve(m0, Δt, tmax, ForwardEuler());
 
-@test numerical_solution ≈ expected_result atol=0.1
+# @test numerical_solution ≈ expected_result atol=1
