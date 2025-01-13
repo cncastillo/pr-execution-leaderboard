@@ -1,5 +1,5 @@
 using Test
-using .MyPkg
+using MyPkg
 using StaticArrays
 
 const gamma = 2pi * 42.58 * 1e6
