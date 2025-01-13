@@ -1,6 +1,6 @@
 using Test
 using MyPkg
-using Cthulhu
+# using Cthulhu
 
 # Inputs
 M0 = 1.0
