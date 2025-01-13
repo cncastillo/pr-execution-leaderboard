@@ -52,7 +52,6 @@ Solve the Bloch equations for a given initial magnetization `m0`, time step `dt`
 - `mt::Matrix{Float64}`: Magnetization at each time step.
 """
 function solve(m0, dt, tmax, method)
-    m0 = SVector(m0...)
     Nsteps = Int(floor(tmax / dt))
     m = m0
     mt = zeros(Nsteps, 3)
