@@ -36,10 +36,10 @@ end
 function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
     m = SVector{3}(m0)
-    mt = zeros(ceil(Int64,tmax/dt) + 1, 3)
+    mt = zeros(ceil(::Int64,tmax/dt) + 1, 3)
     for i in 1:Nsteps
-        m .= step(dt, m, method)
-        mt[i, :] .= m
+        m = step(dt, m, method)
+        mt[i, :] = m
     end
     return mt
 end
