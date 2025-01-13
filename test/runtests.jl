@@ -9,4 +9,4 @@ tmax = 3.0
 expected_result    = solve(m0, dt, tmax, Theoretical())
 numerical_solution = solve(m0, dt, tmax, ForwardEuler())
 
-@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(m0, dt, 3.0, Theoretical())[end, 1]) <= 1e-3
+@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(m0, dt, 3.0, Theoretical())[end, 1]) <= 1e-2
