@@ -25,7 +25,7 @@ end
 
 
 """Solve with Theoretical solution."""
-function solve(m0, dt, tmax, method::Theoretical)
+function solve(m0, dt, tmax, dummy, method::Theoretical)
   t = 0:dt:tmax
   x = cos.(gamma .* Bz .* t) .* exp.(-t ./ T2)
   y = -sin.(gamma .* Bz .* t) .* exp.(-t ./ T2)
@@ -34,7 +34,7 @@ function solve(m0, dt, tmax, method::Theoretical)
 end
 
 "Solve with a numerical method."
-function solve(m0, dt, tmax, method)
+function solve(m0, dt, tmax, dummy, method)
   n_steps = length(0:dt:tmax)
   m = m0
   mt = zeros(3, n_steps)
