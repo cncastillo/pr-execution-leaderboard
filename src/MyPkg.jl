@@ -31,7 +31,7 @@ function step!(m, Δt::Float64, method::RungeKutta2)
     m + Δt*(bloch(m1)+bloch(m))/2
 end
 
-function solve(m0::Vector{Float64}, Δt, tmax, method)
+function solve(m0, Δt, tmax, method)
     Nsteps = Int(round(tmax/Δt))
     m = m0
     mt = zeros(Nsteps, 3)
@@ -43,7 +43,7 @@ function solve(m0::Vector{Float64}, Δt, tmax, method)
     return mt
 end
 
-function solve(m0::Vector{Float64}, Δt, tmax, method::Theoretical)
+function solve(m0, Δt, tmax, method::Theoretical)
     t = Δt:Δt:tmax
     mx = @. m0[1].*cos.(γ*Bz[1].*t)*exp.(-t./T2)
     my = @. -m0[1].*sin.(γ*Bz[2]*t)*exp.(-t./T2)
