@@ -29,31 +29,17 @@ function step(dt, m, method::ForwardEuler)
 end
 
 function bloch(m)
-    crossproduct = cross(m, B)
-    return gamma .* crossproduct .- (Ti .* m) .- m0t1
+    return gamma .* cross(m, B) .- (Ti .* m) .- m0t1
 end
 
-"""
-    solve(m0::AbstractVector, dt::Real, tmax::Real, method::Function) -> AbstractMatrix
 
-Solves the time evolution of a system using a specified method.
-
-# Arguments
-- `m0::AbstractVector`: Initial state vector of the system.
-- `dt::Real`: Time step for the simulation.
-- `tmax::Real`: Total simulation time.
-- `method::Singleton`: Struct that determines the time evolution step.
-
-# Returns
-- `AbstractMatrix`: Matrix where each column represents the state vector at each time step.
-"""
 function solve(m0, dt, tmax, method)
     Nsteps = Int(ceil(tmax/dt))
     m = SVector{3}(m0)
-    mt = zeros(3, Int(ceil(tmax/dt)) + 1)
+    mt = zeros(Int(ceil(tmax/dt)) + 1, 3)
     for i in 1:Nsteps
         m = step(dt, m, method)
-        mt[:, i] = m
+        mt[i, :] = m
     end
     return mt
 end
