@@ -21,12 +21,12 @@ const bloch_matrix = @SMatrix[  -T1_i      Bzz_γ    0;
                                 0           0       -T1_i]
 const independent = @SVector[0, 0, M0*T1_i]
 
-function step!(m::Vector{Float64}, Δt::Float64,  method::ForwardEuler)
+function step!(m, Δt::Float64,  method::ForwardEuler)
     m + bloch(m)*Δt
 end
 
 
-function step!(m::Vector{Float64}, Δt::Float64, method::RungeKutta2)
+function step!(m, Δt::Float64, method::RungeKutta2)
     m1 = m + bloch(m)*Δt
     m + Δt*(bloch(m1)+bloch(m))/2
 end
@@ -43,7 +43,7 @@ function solve(m0::Vector{Float64}, Δt, tmax, method)
     return mt
 end
 
-function solve(m0, Δt, tmax, method::Theoretical)
+function solve(m0::Vector{Float64}, Δt, tmax, method::Theoretical)
     t = Δt:Δt:tmax
     mx = @. m0[1].*cos.(γ*Bz[1].*t)*exp.(-t./T2)
     my = @. -m0[1].*sin.(γ*Bz[2]*t)*exp.(-t./T2)
