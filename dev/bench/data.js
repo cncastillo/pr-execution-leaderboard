@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736799503155,
+  "lastUpdate": 1736799606946,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -506,6 +506,32 @@ window.BENCHMARK_DATA = {
             "value": 58559,
             "unit": "ns",
             "extra": "gctime=34846.11762279481\nmemory=72048\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "d23181965ad9b680e5a4616775aa5c9eff0c2c32",
+          "message": "Improved features in Spincheira branch",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/25/commits/d23181965ad9b680e5a4616775aa5c9eff0c2c32"
+        },
+        "date": 1736799606632,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function2/Sebastijo",
+            "value": 550616,
+            "unit": "ns",
+            "extra": "gctime=128881.19654553196\nmemory=1264016\nallocs=23497\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
