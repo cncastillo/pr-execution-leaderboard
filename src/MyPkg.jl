@@ -31,6 +31,8 @@ function bloch(M, γ)
     return DM
 end
 
+# lol
+
 function step(dt, m, method::ForwardEuler)
     Mi = m
     Mf = Mi + dt * bloch(Mi, γ)
