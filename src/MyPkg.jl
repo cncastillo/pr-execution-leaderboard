@@ -14,6 +14,9 @@ const m0 = SA[M₀; 0.0; 0.0]
 struct Theoretical
 end
 
+struct ForwardEuler
+end
+
 function solve(m0, dt, tmax, method::Theoretical)
 	t = collect(Float32, dt:dt:tmax)
 	return SA[
@@ -23,19 +26,24 @@ function solve(m0, dt, tmax, method::Theoretical)
 	]'
 end
 
-function solve(m0, dt, tmax, method::ForwardEuler)
+function bloch(m)
+	M₁, M₂, M₃ = m
+	return γ * SA[M₂*B₃, -M₁*B₃, 0.0] - SA[M₁/T₂, M₂/T₂, (M₃-M₀)/T₁]
+end
+
+function step(dt, m, method::ForwardEuler)
+	return m .+ dt * bloch(m)
+end
+
+function solve(m0, dt, tmax, method)
 	Nsteps = Int(tmax / dt)
 	m = SVector{3}(m0)
 	mt = zeros(Float64, (Nsteps, 3))
 	for i in 1:Nsteps
-		M₁, M₂, M₃ = m
-		m = m .+ (dt * γ) .* SA[M₂*B₃-M₁/T₂, -M₁*B₃+M₂/T₂, (M₃-M₀)/T₁]
+		m = step(dt, m, method)
 		mt[i, :] = m
 	end
 	return mt
-end
-
-struct ForwardEuler
 end
 
 export solve, ForwardEuler, Theoretical
