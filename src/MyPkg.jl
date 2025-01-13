@@ -1,5 +1,7 @@
 module MyPkg
 
+using StaticArrays
+
 struct Theoretical end
 struct ForwardEuler end
 struct ForwardEulerOptim end
@@ -11,11 +13,11 @@ const m0 = 1
 const Bz = 10^-7
 const gammaBz = gamma * Bz
 
-const V1 = [1 / T2, 1 / T2, 1 / T1]
-const V2 = [0, 0, m0 / T1]
+const V1 = SVector(1 / T2, 1 / T2, 1 / T1)
+const V2 = SVector(0, 0, m0 / T1)
 
 function crossBz(a)
-  return [a[2] * gammaBz, -a[1] * gammaBz, 0.0]
+  return @SVector [a[2] * gammaBz, -a[1] * gammaBz, 0.0]
 end
 
 function bloch(m)
@@ -39,6 +41,7 @@ end
 "Solve with a numerical method."
 function solve(m, dt, tmax, method)
   n_steps = Int64(ceil(tmax / dt) + 1)
+  m = SVector{3,Float64}(m)
   mt = zeros(3, n_steps)
   for i in axes(mt, 2)
     m = step(dt, m, method)
