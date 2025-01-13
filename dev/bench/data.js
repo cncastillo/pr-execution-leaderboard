@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736795513053,
+  "lastUpdate": 1736795733701,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -220,6 +220,32 @@ window.BENCHMARK_DATA = {
             "value": 27201,
             "unit": "ns",
             "extra": "gctime=21993.95437063025\nmemory=72112\nallocs=2\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "adaa9c05527c05fe62828ddb34ffc4356c876878",
+          "message": "Testing function2",
+          "timestamp": "2025-01-10T20:41:14Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/19/commits/adaa9c05527c05fe62828ddb34ffc4356c876878"
+        },
+        "date": 1736795733440,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function2/pdpino",
+            "value": 5134878.5,
+            "unit": "ns",
+            "extra": "gctime=343402.75103694317\nmemory=3000112\nallocs=90002\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
