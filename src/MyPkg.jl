@@ -2,6 +2,7 @@ module MyPkg
 
 struct Theoretical end
 struct ForwardEuler end
+struct ForwardEulerOptim end
 
 gamma = 2 * π * 42.58 * 10^6
 T1 = 1
@@ -19,13 +20,13 @@ function bloch(m)
   return v1 .- v2
 end
 
-function step(dt, m, method::ForwardEuler)
+function step(dt, m, method::ForwardEulerOptim)
   return m .+ dt .* bloch(m)
 end
 
 
 """Solve with Theoretical solution."""
-function solve(m0, dt, tmax, dummy, method::Theoretical)
+function solve(m0, dt, tmax, method::Theoretical)
   t = 0:dt:tmax
   x = cos.(gamma .* Bz .* t) .* exp.(-t ./ T2)
   y = -sin.(gamma .* Bz .* t) .* exp.(-t ./ T2)
@@ -34,7 +35,7 @@ function solve(m0, dt, tmax, dummy, method::Theoretical)
 end
 
 "Solve with a numerical method."
-function solve(m0, dt, tmax, dummy, method)
+function solve(m0, dt, tmax, method)
   n_steps = length(0:dt:tmax)
   m = m0
   mt = zeros(3, n_steps)
@@ -46,6 +47,6 @@ function solve(m0, dt, tmax, dummy, method)
   return mt
 end
 
-export solve, step, Theoretical, ForwardEuler, m0
+export solve, step, Theoretical, ForwardEuler, ForwardEulerOptim, m0
 
 end  # module MyPkg
