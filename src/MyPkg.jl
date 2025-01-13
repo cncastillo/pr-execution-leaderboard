@@ -29,7 +29,7 @@ end
 
 """Solve with Theoretical solution."""
 function solve(m0, dt, tmax, method::Theoretical)
-  t = 1:dt:tmax
+  t = 0:dt:tmax
   x = cos.(gammaBz .* t) .* exp.(-t ./ T2)
   y = -sin.(gammaBz .* t) .* exp.(-t ./ T2)
   z = 1 .- exp.(-t ./ T1)
