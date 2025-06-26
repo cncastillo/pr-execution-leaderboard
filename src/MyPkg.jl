@@ -1,11 +1,12 @@
 module MyPkg
 using LinearAlgebra: cross
+using Cthulhu
 
-γ = 2π * 42.58e6
-m0 = 1
-T1 = 1.0
-T2 = 100
-B = 1e-6
+const γ = 2π * 42.58e6
+const M0 = 1.0
+const T1 = 1.0
+const T2 = 100.0
+const B = 1e-6
 
 function step(dt, m, method) 
     # This is a generic function that will be dispatched based on method type
@@ -15,14 +16,20 @@ end
 struct ForwardEuler
 end
 
+function bloch2(m)
+    dM = (γ * cross(m, [0, 0, B])) - [m[1] / T2, m[2] / T2, (m[3] - M0) / T1]
+    return dM
+end
+
 function bloch(m)
+    mx, my, mz = m
     cross_term = γ * cross(m, [0, 0, B])
-    relaxation_term = [m[1] / T2, m[2] / T2, (m[3] - m0) / T1]
+    relaxation_term = [mx / T2, my / T2, (mz - M0) / T1]
     dM = cross_term - relaxation_term
     return dM
 end
 
-function step(dt, m, method::ForwardEuler)
+function step(dt, m, ::ForwardEuler)
     dM = bloch(m)
     m_next = m + dM * dt
     return m_next
@@ -31,33 +38,33 @@ end
 
 # Task 4
 "Solves the Bloch equation using the specified method."
-function solve(m0_vec::Vector, dt::Real, tmax::Real, method)
+function solve(m0, dt, tmax, method)
     Nsteps = Int(round(tmax / dt))
-    m = copy(m0_vec)
-    mt = zeros(3, Nsteps + 1)
-    mt[:, 1] = m
+    mt = zeros(Nsteps + 1, 3)
+    mt[1, :] = m0
     for i in 1:Nsteps
-        m = step(dt, m, method)
-        mt[:, i + 1] = m
+        mt[i + 1, :] = step(dt, @view(mt[i, :]), method)
     end
     return mt
 end
 
 struct Theoretical
 end
-function solve(m0_vec::Vector, dt::Real, tmax::Real, ::Theoretical)
+function solve(m0, dt, tmax, method::Theoretical)
     ts = 0:dt:tmax
     
     # Extract initial magnetization components
-    Mx0, My0, Mz0 = m0_vec[1], m0_vec[2], m0_vec[3]
+    Mx0, My0, Mz0 = m0[1], m0[2], m0[3]
     
-    Mx = Mx0 .* cos.(γ * B .* ts) .* exp.(-ts ./ T2) - My0 .* sin.(γ * B .* ts) .* exp.(-ts ./ T2)
-    My = Mx0 .* sin.(γ * B .* ts) .* exp.(-ts ./ T2) + My0 .* cos.(γ * B .* ts) .* exp.(-ts ./ T2)
-    Mz = Mz0 .* exp.(-ts ./ T1) + m0 .* (1 .- exp.(-ts ./ T1))  # m0 is the global equilibrium magnetization = 1
+    γB = γ * B
+    tst2 = @. ts / T2
+    tst1 = @. ts / T1
+    Mx = @. Mx0 * cos(γB * ts) * exp(-tst2) - My0 * sin(γB * ts) * exp(-tst2)
+    My = @. Mx0 * sin(γB * ts) * exp(-tst2) + My0 * cos(γB * ts) * exp(-tst2)
+    Mz = @. Mz0 * exp(-tst1) + M0 * (1 - exp(-tst1)) 
 
-    mt = [Mx'; My'; Mz']
-    return mt
+    return [Mx, My, Mz]
 end
 
-export step, ForwardEuler, RungeKutta2, solve, bloch, Theoretical
+export step, ForwardEuler, RungeKutta2, solve, bloch, bloch2, Theoretical
 end # module MyPkg
