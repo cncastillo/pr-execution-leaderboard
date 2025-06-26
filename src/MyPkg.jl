@@ -1,6 +1,8 @@
 module MyPkg
+
 using LinearAlgebra: cross
 using Cthulhu
+using StaticArrays
 
 const γ = 2π * 42.58e6
 const M0 = 1.0
@@ -16,15 +18,9 @@ end
 struct ForwardEuler
 end
 
-function bloch2(m)
-    dM = (γ * cross(m, [0, 0, B])) - [m[1] / T2, m[2] / T2, (m[3] - M0) / T1]
-    return dM
-end
-
 function bloch(m)
-    mx, my, mz = m
-    cross_term = γ * cross(m, [0, 0, B])
-    relaxation_term = [mx / T2, my / T2, (mz - M0) / T1]
+    cross_term = γ * cross(m, SA[0, 0, B])
+    relaxation_term = [m[1] / T2, m[2] / T2, (m[3] - M0) / T1]
     dM = cross_term - relaxation_term
     return dM
 end
