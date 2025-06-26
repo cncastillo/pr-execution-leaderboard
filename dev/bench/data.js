@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1750882982240,
+  "lastUpdate": 1750960890839,
   "repoUrl": "https://github.com/cncastillo/pr-execution-leaderboard",
   "entries": {
     "Julia benchmark result": [
@@ -766,6 +766,32 @@ window.BENCHMARK_DATA = {
             "value": 3606811,
             "unit": "ns",
             "extra": "gctime=190119.88684263246\nmemory=2464032\nallocs=62493\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "committer": {
+            "name": "cncastillo",
+            "username": "cncastillo"
+          },
+          "id": "98723866fcf41bd9f9efb16a9674aedc1cf79e9c",
+          "message": "Improved submission submission",
+          "timestamp": "2025-06-25T20:13:58Z",
+          "url": "https://github.com/cncastillo/pr-execution-leaderboard/pull/28/commits/98723866fcf41bd9f9efb16a9674aedc1cf79e9c"
+        },
+        "date": 1750960889880,
+        "tool": "julia",
+        "benches": [
+          {
+            "name": "function2/KookiesNKareem",
+            "value": 707267,
+            "unit": "ns",
+            "extra": "gctime=149753.96279518088\nmemory=1752112\nallocs=21002\nparams={\"gctrial\":true,\"time_tolerance\":0.05,\"evals_set\":false,\"samples\":10000,\"evals\":1,\"gcsample\":false,\"seconds\":5,\"overhead\":0,\"memory_tolerance\":0.01}"
           }
         ]
       }
