@@ -36,10 +36,10 @@ end
 "Solves the Bloch equation using the specified method."
 function solve(m0, dt, tmax, method)
     Nsteps = Int(round(tmax / dt))
-    mt = zeros(Nsteps + 1, 3)
-    mt[1, :] = m0
+    mt = Vector{SVector{3, Float64}}(undef, Nsteps + 1)
+    mt[1] = SVector(m0[1], m0[2], m0[3])
     for i in 1:Nsteps
-        mt[i + 1, :] = step(dt, @view(mt[i, :]), method)
+        mt[i + 1] = step(dt, mt[i], method)
     end
     return mt
 end
