@@ -27,7 +27,7 @@ end
 
 function step(dt, m, ::ForwardEuler)
     dM = bloch(m)
-    m_next = m + dM * dt
+    m_next = m + dM .* dt
     return m_next
 end
 
