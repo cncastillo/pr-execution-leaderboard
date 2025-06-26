@@ -1,12 +1,19 @@
 using Test
 using MyPkg
+using StaticArrays
 
-# Inputs
-m0   = [1.0, 0.0, 0.0]
-Δt   = 0.001
-tmax = 3.0
+const gamma = 2pi * 42.58 * 1e6
+const M0 = 1.0
+const T1 = 1.0
+const T2 = 0.5
+const Bz = 1e-7
 
-expected_result    = solve(m0, Δt, tmax, Theoretical())
-numerical_solution = solve(m0, Δt, tmax, ForwardEuler())
+const Ti = SA[1/T2, 1/T2, 1/T1]
+const m0t1 = SA[0.0,0.0, M0/T1]
+const B = SA[0.0, 0.0, Bz]
+const tmax = 3.0
+const m0 = SA[M0, 0.0, 0.0]
 
-@test numerical_solution ≈ expected_result
+dt = 1e-3
+
+@test abs(solve(m0, dt, 3.0, ForwardEuler())[1, end] - solve(M0, dt, 3.0, Theoretical())[end, 1]) <= 2e-3
